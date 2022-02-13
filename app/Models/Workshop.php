@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Workshop extends Model
 {
     use HasFactory;
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function equipments()
+    {
+        return $this->hasMany(Equipment::class);
+    }
 }

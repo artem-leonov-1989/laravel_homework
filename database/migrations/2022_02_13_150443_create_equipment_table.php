@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkshopsTable extends Migration
+class CreateEquipmentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateWorkshopsTable extends Migration
      */
     public function up()
     {
-        Schema::create('workshops', function (Blueprint $table) {
-            $table->id();
-            $table->integer('division_code')->unsigned();
-            $table->string('name', 50);
+        Schema::create('equipment', function (Blueprint $table) {
+            $table->unsignedBigInteger('id');
+            $table->primary('id');
+            $table->string('model', 10);
+            $table->integer('span')->unsigned();
+            $table->foreignId('workshop_id')->constrained();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateWorkshopsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('workshops');
+        Schema::dropIfExists('equipment');
     }
 }

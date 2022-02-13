@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkshopsTable extends Migration
+class CreateUserWorkshop extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateWorkshopsTable extends Migration
      */
     public function up()
     {
-        Schema::create('workshops', function (Blueprint $table) {
-            $table->id();
-            $table->integer('division_code')->unsigned();
-            $table->string('name', 50);
-            $table->timestamps();
+        Schema::create('user_workshop', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('workshop_id')->constrained();
         });
     }
 
@@ -28,6 +26,6 @@ class CreateWorkshopsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('workshops');
+        Schema::dropIfExists('user_workshop');
     }
 }
