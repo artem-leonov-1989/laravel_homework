@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\CatalogController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +14,6 @@ use App\Http\Controllers\TestController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::get('/test', [TestController::class, 'test']);
+
+Route::get('/catalog',[CatalogController::class, 'index'])->name('catalog_index');
