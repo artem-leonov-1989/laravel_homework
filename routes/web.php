@@ -22,7 +22,16 @@ Route::get('/handbook', function () {
     return view('handbook.index');
 });
 
-Route::get('/workshop', [WorkshopsController::class, 'index'])->name('workshops.index');
+Route::group([
+    'as' => 'workshops.',
+    'prefix' => 'workshops',
+    /*'middleware' => 'auth'*/
+], function (){
+    Route::get('/', [WorkshopsController::class, 'index'])->name('index');
+    Route::get('/create', [WorkshopsController::class, 'create'])->name('create');
+    Route::delete('/{id}', [WorkshopsController::class, 'destroy'])->name('destroy');
+});
+
 
 Auth::routes();
 
