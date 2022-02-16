@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WorkshopsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ Route::get('/handbook', function () {
     return view('handbook.index');
 });
 
+Route::get('/workshop', [WorkshopsController::class, 'index'])->name('workshops.index');
 
 Auth::routes();
 
