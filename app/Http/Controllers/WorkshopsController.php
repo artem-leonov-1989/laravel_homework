@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WorkshopRequest;
 use App\Models\Workshop;
 use Illuminate\Http\Request;
 
@@ -18,9 +19,11 @@ class WorkshopsController extends Controller
         return view('handbook.workshop.form');
     }
 
-    public function store(Request $request)
+    public function store(WorkshopRequest $request)
     {
-        //
+        $date = $request->except('_token');
+        Workshop::create($date);
+        return redirect()->route('workshops.index');
     }
 
     public function show()

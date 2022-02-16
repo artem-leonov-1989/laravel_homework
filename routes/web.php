@@ -29,6 +29,7 @@ Route::group([
 ], function (){
     Route::get('/', [WorkshopsController::class, 'index'])->name('index');
     Route::get('/create', [WorkshopsController::class, 'create'])->name('create');
+    Route::post('/', [WorkshopsController::class, 'store'])->name('store');
     Route::delete('/{id}', [WorkshopsController::class, 'destroy'])->name('destroy');
 });
 
