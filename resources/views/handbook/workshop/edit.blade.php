@@ -1,7 +1,4 @@
-@extends('layouts.layout')
-@section('costume_css')
-    <link rel="stylesheet" href="{{ asset('css/workshop.css') }}">
-@endsection
+@extends('layouts.handbook')
 @section('name_page', 'Редактирование подразделения')
 @section('content')
     <form class="form ms-auto me-auto form-create" action="{{ route('workshops.update', ['id' => $workshop->id]) }}" method="post">

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkshopController;
+use App\Http\Controllers\MachineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,15 @@ Route::group([
     Route::delete('/{id}', [WorkshopController::class, 'destroy'])->name('destroy');
 });
 
+Route::group([
+    'as' => 'machines.',
+    'prefix' => 'machines',
+], function (){
+    Route::get('/', [MachineController::class, 'index'])->name('index');
+    Route::delete('/{id}', [MachineController::class, 'destroy'])->name('destroy');
+    Route::get('/create', [MachineController::class, 'create'])->name('create');
+    Route::post('/', [MachineController::class, 'store'])->name('store');
+});
 
 Auth::routes();
 

@@ -1,10 +1,10 @@
 @extends('layouts.handbook')
 @section('costume_css')
-    <link rel="stylesheet" href="{{ asset('css/workshop.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/handbook.css') }}">
 @endsection
 @section('name_page', "Справочник цехов")
 @section('handbook_item')
-    <table class="table table-striped ms-auto me-auto">
+    <table class="table table-workshop table-striped ms-auto me-auto">
         <thead>
             <th scope="col">Название</th>
             <th scope="col">Код подразделения</th>
