@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\WorkshopRequest;
 use App\Models\Workshop;
-use Illuminate\Http\Request;
 
 class WorkshopsController extends Controller
 {
     public function index()
     {
-        $workshops_list = Workshop::all();
+        $workshops_list = Workshop::orderBy('name', 'ASC')->get();
         return view('handbook.workshop.index', ['workshops_list' => $workshops_list]);
     }
 
@@ -26,19 +25,18 @@ class WorkshopsController extends Controller
         return redirect()->route('workshops.index');
     }
 
-    public function show()
+    public function edit($id)
     {
-        //
+        $date = Workshop::find($id);
+        return view('handbook.workshop.edit', ['workshop' => $date]);
     }
 
-    public function edit()
+    public function update(WorkshopRequest $request, $id)
     {
-        //
-    }
-
-    public function update(Request $request)
-    {
-        //
+        $date = $request->except('_token', '_method');
+        $workshop = Workshop::find($id);
+        $workshop->update($date);
+        return redirect()->route('workshops.index');
     }
 
     public function destroy($id)

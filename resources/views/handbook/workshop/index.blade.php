@@ -16,7 +16,7 @@
                 <tr>
                     <td>{{ $workshops->name }}</td>
                     <td>{{ $workshops->division_code }}</td>
-                    <td><a class="btn btn-outline-primary" href="#">Редактировать</a></td>
+                    <td><a class="btn btn-outline-primary" href="{{ route('workshops.edit', ['id' => $workshops->id]) }}">Редактировать</a></td>
                     <td>
                         <form method="POST" action="{{route('workshops.destroy', ['id' => $workshops->id])}}">
                             @csrf

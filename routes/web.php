@@ -30,6 +30,8 @@ Route::group([
     Route::get('/', [WorkshopsController::class, 'index'])->name('index');
     Route::get('/create', [WorkshopsController::class, 'create'])->name('create');
     Route::post('/', [WorkshopsController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [WorkshopsController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [WorkshopsController::class, 'update'])->name('update');
     Route::delete('/{id}', [WorkshopsController::class, 'destroy'])->name('destroy');
 });
 
