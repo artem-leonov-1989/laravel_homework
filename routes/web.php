@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\WorkshopsController;
+use App\Http\Controllers\WorkshopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,19 +20,19 @@ Route::get('/', function () {
 
 Route::get('/handbook', function () {
     return view('handbook.index');
-});
+})->name('handbook');
 
 Route::group([
     'as' => 'workshops.',
     'prefix' => 'workshops',
     /*'middleware' => 'auth'*/
 ], function (){
-    Route::get('/', [WorkshopsController::class, 'index'])->name('index');
-    Route::get('/create', [WorkshopsController::class, 'create'])->name('create');
-    Route::post('/', [WorkshopsController::class, 'store'])->name('store');
-    Route::get('/edit/{id}', [WorkshopsController::class, 'edit'])->name('edit');
-    Route::put('/{id}', [WorkshopsController::class, 'update'])->name('update');
-    Route::delete('/{id}', [WorkshopsController::class, 'destroy'])->name('destroy');
+    Route::get('/', [WorkshopController::class, 'index'])->name('index');
+    Route::get('/create', [WorkshopController::class, 'create'])->name('create');
+    Route::post('/', [WorkshopController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [WorkshopController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [WorkshopController::class, 'update'])->name('update');
+    Route::delete('/{id}', [WorkshopController::class, 'destroy'])->name('destroy');
 });
 
 

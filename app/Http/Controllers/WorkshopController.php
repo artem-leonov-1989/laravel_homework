@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\WorkshopRequest;
 use App\Models\Workshop;
 
-class WorkshopsController extends Controller
+class WorkshopController extends Controller
 {
     public function index()
     {

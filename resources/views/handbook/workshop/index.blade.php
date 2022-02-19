@@ -1,9 +1,9 @@
-@extends('layouts.layout')
+@extends('layouts.handbook')
 @section('costume_css')
     <link rel="stylesheet" href="{{ asset('css/workshop.css') }}">
 @endsection
 @section('name_page', "Справочник цехов")
-@section('content')
+@section('handbook_item')
     <table class="table table-striped ms-auto me-auto">
         <thead>
             <th scope="col">Название</th>
