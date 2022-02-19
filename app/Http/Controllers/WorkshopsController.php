@@ -16,7 +16,7 @@ class WorkshopsController extends Controller
 
     public function create()
     {
-        return view('handbook.workshop.form');
+        return view('handbook.workshop.create');
     }
 
     public function store(WorkshopRequest $request)
