@@ -77,4 +77,10 @@ class MachineController extends Controller
             echo 'Мамкин программист :)';
         }
     }
+
+    public function search(Request $request)
+    {
+        $machine = Machine::find($request->search);
+        return view('handbook.machine.index', ['machines_list' => $machine]);
+    }
 }

@@ -46,6 +46,7 @@ Route::group([
     Route::post('/', [MachineController::class, 'store'])->name('store');
     Route::get('/edit/{id}', [MachineController::class, 'edit'])->name('edit');
     Route::put('/{id}', [MachineController::class, 'update'])->name('update');
+    Route::post('/search', [MachineController::class, 'search'])->name('search');
 });
 
 Auth::routes();
