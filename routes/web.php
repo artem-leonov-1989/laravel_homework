@@ -44,6 +44,8 @@ Route::group([
     Route::delete('/{id}', [MachineController::class, 'destroy'])->name('destroy');
     Route::get('/create', [MachineController::class, 'create'])->name('create');
     Route::post('/', [MachineController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [MachineController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [MachineController::class, 'update'])->name('update');
 });
 
 Auth::routes();

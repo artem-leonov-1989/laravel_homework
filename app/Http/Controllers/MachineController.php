@@ -34,4 +34,38 @@ class MachineController extends Controller
         Machine::create($date);
         return redirect()->route('machines.index');
     }
+
+    public function edit(Request $request, $id)
+    {
+        $machine = Machine::find($id);
+        $workshops_list = Workshop::all();
+        $request->session()->put('old_machine_id', $machine->id);
+        return view('handbook.machine.edit', ['machine' => $machine, 'workshops_list' => $workshops_list]);
+    }
+
+    public function update(MachineRequest $request, $id)
+    {
+        $date = $request->except('_token', '_method');
+        $old_id = $request->session()->get('old_machine_id');
+        if ($id == $old_id)
+        {
+            $machine = Machine::find($id);
+            if ($date['id'] == $old_id)
+            {
+                $machine->update($date);
+            } else {
+                $machine_isset = Machine::find($date['id']);
+                if (!isset($machine_isset))
+                {
+                    $machine->update($date);
+                } else {
+                    return redirect()->route('machines.edit', ['id' => $id])->withErrors(['save_error' => 'Станок с таким инвентарным уже существует!!!']);
+                }
+            }
+            return redirect()->route('machines.index');
+        } else {
+            echo 'Мамкин программист :)';
+        }
+
+    }
 }

@@ -21,7 +21,7 @@
                 <td>{{ $machine->production_year }}</td>
                 <td>{{ $machine->company_manufacturer }}</td>
                 <td>{{ $machine->workshop->name }}</td>
-                <td><a class="btn btn-outline-primary" href="{{ route('workshops.edit', ['id' => $machine->id]) }}">Редактировать</a></td>
+                <td><a class="btn btn-outline-primary" href="{{ route('machines.edit', ['id' => $machine->id]) }}">Редактировать</a></td>
                 <td>
                     <form method="POST" action="{{route('machines.destroy', ['id' => $machine->id])}}">
                         @csrf
