@@ -2,3 +2,6 @@
     background-color: #1e2125;
     color: white;
 }
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
