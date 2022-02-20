@@ -25,7 +25,7 @@ class MachineRequest extends FormRequest
     {
         return [
             'id' => 'required|digits:5',
-            'model' => 'max:30',
+            'model' => 'required|max:30',
             'factory_number' => 'max:30',
             'production_year' => 'nullable|digits:4',
             'company_manufacturer' => 'max:50',

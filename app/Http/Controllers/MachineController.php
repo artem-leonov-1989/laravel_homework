@@ -9,8 +9,11 @@ use Illuminate\Http\Request;
 
 class MachineController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->session()->has('old_machine_id')) {
+            $request->session()->forget('old_machine_id');
+        }
         $machines_list = Machine::paginate(10);
         return view('handbook.machine.index', ['machines_list' => $machines_list]);
     }
@@ -31,8 +34,14 @@ class MachineController extends Controller
     public function store(MachineRequest $request)
     {
         $date = $request->except('_token');
-        Machine::create($date);
-        return redirect()->route('machines.index');
+        $machine_isset = Machine::find($date['id']);
+        if (!isset($machine_isset))
+        {
+            Machine::create($date);
+            return redirect()->route('machines.index');
+        } else {
+            return redirect()->route('machines.create')->withErrors(['save_error' => 'Станок с таким инвентарным уже существует!!!']);
+        }
     }
 
     public function edit(Request $request, $id)
@@ -58,14 +67,14 @@ class MachineController extends Controller
                 if (!isset($machine_isset))
                 {
                     $machine->update($date);
+                    $request->session()->forget('old_machine_id');
+                    return redirect()->route('machines.index');
                 } else {
                     return redirect()->route('machines.edit', ['id' => $id])->withErrors(['save_error' => 'Станок с таким инвентарным уже существует!!!']);
                 }
             }
-            return redirect()->route('machines.index');
         } else {
             echo 'Мамкин программист :)';
         }
-
     }
 }

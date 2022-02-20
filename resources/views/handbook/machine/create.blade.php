@@ -1,6 +1,11 @@
 @extends('layouts.handbook')
 @section('name_page', 'Добавление станка')
 @section('content')
+    @error('save_error')
+    <div class="alert alert-danger" role="alert">
+        {{$message}}
+    </div>
+    @enderror
     <form class="form ms-auto me-auto form-create" action="{{ route('machines.store') }}" method="post">
         @csrf
         <div class="mb-3">
@@ -12,7 +17,7 @@
         </div>
         <div class="mb-3">
             <label for="model" class="form-label">Модель станка</label>
-            <input type="text" class="form-control" id="model" name="model" value="{{ old('model') }}">
+            <input type="text" class="form-control" placeholder="Необходимо заполнить" id="model" name="model" value="{{ old('model') }}">
             @error('model')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
