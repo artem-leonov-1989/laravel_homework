@@ -62,6 +62,7 @@ class MachineController extends Controller
             if ($date['id'] == $old_id)
             {
                 $machine->update($date);
+                return redirect()->route('machines.index');
             } else {
                 $machine_isset = Machine::find($date['id']);
                 if (!isset($machine_isset))
